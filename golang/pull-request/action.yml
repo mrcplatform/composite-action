@@ -1,0 +1,15 @@
+name: pull-request
+description: "action for pull request in projects in golang"
+runs:
+  using: "composite"
+  steps:
+    - name: Set up Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: 1.18.2
+    - name: install, build and test
+      shell: bash
+      run: |
+          go get ./...  
+          go build -v ./...
+          go test -v ./...
