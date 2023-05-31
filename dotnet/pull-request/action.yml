@@ -1,0 +1,15 @@
+name: pull-request
+description: "action for pull request in projects in dotnet"
+runs:
+  using: "composite"
+  steps:
+    - name: Set up dotnet
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '7.0.x'
+    - name: Install dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build
+    - name: Test with the dotnet CLI
+      run: dotnet test
