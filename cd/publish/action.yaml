@@ -13,6 +13,8 @@ runs:
     - name: Push docker image
       shell: bash
       run: |
-        docker login ghcr.io -u mrcplatform --password-stdin
+        echo "${{ secrets.GITHUB_TOKEN }}" > ~/ghcr_token
         docker build . --tag ghcr.io/mrcplatform/${{ github.event.repository.name }}:latest
+        rm ~/ghcr_token
+        docker run ghcr.io/mrcplatform/${{ github.event.repository.name }}:latest
         docker push ghcr.io/mrcplatform/${{ github.event.repository.name }}:latest
