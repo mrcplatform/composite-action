@@ -19,6 +19,6 @@ runs:
       shell: bash
       run: |
         echo "${{ inputs.repository_token }}" | docker login ghcr.io -u mrcplatform --password-stdin
-        docker run ghcr.io/mrcplatform/${{ github.event.repository.name }}:latest
+        docker build . --file Dockerfile --tag ghcr.io/mrcplatform/${{ github.event.repository.name }}:latest
         docker push ghcr.io/mrcplatform/${{ github.event.repository.name }}:latest
 
