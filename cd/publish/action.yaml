@@ -1,5 +1,10 @@
 name: publish
 
+inputs:
+  repository_token: 
+     description: "github token of project"
+     required: true
+
 runs:
   using: 'composite'
   steps:
@@ -13,7 +18,7 @@ runs:
     - name: Push docker image
       shell: bash
       run: |
-        echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u mrcplatform --password-stdin
+        echo "${{ inputs.repository_token }}" | docker login ghcr.io -u mrcplatform --password-stdin
         docker run ghcr.io/mrcplatform/${{ github.event.repository.name }}:latest
         docker push ghcr.io/mrcplatform/${{ github.event.repository.name }}:latest
 
