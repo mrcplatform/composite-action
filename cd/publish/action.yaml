@@ -14,5 +14,4 @@ runs:
       shell: bash
       run: |
         docker build . --tag ghcr.io/mrcplatform/${{ github.event.repository.name }}:latest
-        docker run ghcr.io/mrcplatform/${{ github.event.repository.name }}:latest
         docker push ghcr.io/mrcplatform/${{ github.event.repository.name }}:latest
