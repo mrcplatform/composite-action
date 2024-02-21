@@ -13,5 +13,6 @@ runs:
     - name: Push docker image
       shell: bash
       run: |
+        docker login ghcr.io
         docker build . --tag ghcr.io/mrcplatform/${{ github.event.repository.name }}:latest
         docker push ghcr.io/mrcplatform/${{ github.event.repository.name }}:latest
