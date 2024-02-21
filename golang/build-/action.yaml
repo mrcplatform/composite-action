@@ -1,0 +1,21 @@
+name: build
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Set up Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: 1.21.3
+
+    - name: Install and build
+      shell: bash
+      run: |
+        go get ./...  
+        CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -tags netgo -ldflags '-w' -o dist *.go
+
+    - name: Archive production artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: app
+        path: dist
