@@ -10,7 +10,7 @@ runs:
 
     - name: Install dependencies
       shell: bash
-      run: npm install --production 
+      run: npm install --production --force
 
     - name: Build the project
       shell: bash
