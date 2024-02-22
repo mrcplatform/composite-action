@@ -9,9 +9,11 @@ runs:
         node-version: '18'
 
     - name: Install dependencies
+      shell: bash
       run: npm install --production 
 
     - name: Build the project
+      shell: bash
       run: npm run build
 
     - name: Archive production artifacts
