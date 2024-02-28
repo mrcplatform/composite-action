@@ -22,7 +22,7 @@ runs:
     run: |
       sudo apt update
       sudo apt install -y openvpn openvpn-systemd-resolved
-      echo "${{ secrets.CLIENT_ONVPN }}" > client.ovpn
+      echo "${{ inputs.client_onvpn }}" > client.ovpn
 
   - name: Connect to VPN
     uses: "kota65535/github-openvpn-connect-action@v2"
