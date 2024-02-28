@@ -1,0 +1,23 @@
+name: build
+
+runs:
+  using: "composite"
+  steps:
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: "18"
+
+    - name: Install dependencies
+      shell: bash
+      run: npm install --force
+
+    - name: Build the project
+      shell: bash
+      run: npm run build
+
+    - name: Archive production artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: app
+        path: dist

@@ -1,0 +1,17 @@
+name: pull-request
+description: "action for pull request in projects in react"
+runs:
+  using: "composite"
+  steps:
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: "18"
+
+    - name: Install dependencies
+      shell: bash
+      run: npm install --force
+
+    - name: Run lint
+      shell: bash
+      run: npm run lint
