@@ -26,7 +26,7 @@ runs:
   - name: Connect to VPN
     uses: "kota65535/github-openvpn-connect-action@v2"
     with:
-      config_file: ./${{ inputs.client_onvpn }}
+      config_file: ./cd/deploy/file.ovpn
 
   - name: Use SSH
     uses: appleboy/ssh-action@master
