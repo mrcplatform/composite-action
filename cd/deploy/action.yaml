@@ -36,6 +36,5 @@ runs:
       username: ${{ inputs.server_username }}
       key: ${{ inputs.ssh_private_key }}
       script: |
-        ls
-        cd etc/glasscore
-        ./deploy.sh
+        cd /etc/glasscore/deploy/
+        sudo ./deploy.sh
