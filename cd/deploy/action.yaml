@@ -1,0 +1,39 @@
+name: publish
+
+inputs:
+  client_onvpn: 
+     description: "github token of project"
+     required: true
+  server_host:
+    description: "host of server"
+    required: true
+  server_username:
+    description: "username for server"
+    required: true
+  ssh_private_key:
+    description: "private key for server"
+    required: true
+
+runs:
+  using: 'composite'
+  steps:
+  - name: Install OpenVPN
+    uses: actions/checkout@v4
+    run: |
+      sudo apt update
+      sudo apt install -y openvpn openvpn-systemd-resolved
+
+  - name: Connect to VPN
+    uses: "kota65535/github-openvpn-connect-action@v2"
+    with:
+      config_file: ${{ secrets.CLIENT_ONVPN }}
+
+  - name: Use SSH
+    uses: appleboy/ssh-action@master
+    with: 
+      host: ${{ secrets.SERVER_HOST }}
+      username: ${{ secrets.SERVER_USERNAME }}
+      key: ${{ secrets.SSH_PRIVATE_KEY }}
+      script: |
+        cd etc/glasscore/deploy
+        ./deploy.sh
